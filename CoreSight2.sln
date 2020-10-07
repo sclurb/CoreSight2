@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreSight2", "CoreSight2\CoreSight2.csproj", "{B0C49D37-96D3-425E-ADDE-F85979A07B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0C49D37-96D3-425E-ADDE-F85979A07B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C49D37-96D3-425E-ADDE-F85979A07B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C49D37-96D3-425E-ADDE-F85979A07B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C49D37-96D3-425E-ADDE-F85979A07B49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6DAE515-015B-4DE3-B379-D8A003853A1A}
+	EndGlobalSection
+EndGlobal

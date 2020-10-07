@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewData["Title"] = "Chart";
+}
+
+<style>
+    .ui-datepicker {
+        /*margin-top: 100px;*/
+    }
+
+    .littleBobby {
+        padding: 10px;
+        margin-top: 10px;
+    }
+</style>
+<div class="container text-center">
+    <h1>Chart</h1>
+    <canvas id="chart" width="600" height="300">
+    </canvas>
+
+    <div class="row">
+
+        <div class="col-md-6 input-with-post-icon">
+            <p>Enter Date: <input placeholder="From Date" type="text" id="datepicker-from" class=""></p>
+        </div>
+        <div class="col-md-6">
+            <p>Enter Date: <input placeholder="To Date" type="text" id="datepicker-to"></p>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="align-middle" id="geDates" onclick="doIt()">Enter Dates</button>
+        </div>
+        <div class="col-md-12">
+
+            <figure class="littleBobby">
+                <p class="text-center">Well, I needed a filler for those larger screens so nthat there was not a blank spot on the bottom....</p>
+                <img class="img-fluid" src="~/img/Bobby_3yearsOld.jpg" />
+                <figcaption class="text-center">Robert B. Donovan puts suntan lotion on Robert M. Donovan.   Bellows Beach, Hawaii 1965</figcaption>
+            </figure>
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+        // Data Picker Initialization
+
+        $("#datepicker-from").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd',
+        });
+        $("#datepicker-to").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd',
+        });
+
+
+        console.log("Hey Man");
+
+
+
+            let dates = [];
+            let insideTemp = [];
+            let outsideTemp = [];
+            let insideHum = [];
+            let outsideHum = [];
+            let from = '2020-05-01T00:00:00.8469332-04:00';
+            let to = '2020-05-15T23:59:59.8469332-04:00';
+
+
+        async function doIt() {
+            from = document.getElementById("datepicker-from");
+            to = document.getElementById("datepicker-to");
+            console.log("From: ", from.value);
+            console.log("To: ", to.value);
+            chartIt();
+        }
+
+          //  //chartIt();
+
+                async function getData() {
+                    //const rawResponse = await fetch('https://192.168.2.8/api/chart', {
+                    const rawResponse = await fetch('https://localhost:44363//api/chart', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "From": from.value,
+                            "To": to.value
+                        })
+                    });
+                    const content = await rawResponse.json();
+
+                    content.forEach(function (item) {
+                        dates.push(item.date);
+                        insideTemp.push(item.temp1);
+                        outsideTemp.push(item.temp4);
+                        insideHum.push(item.hum4);
+                        outsideHum.push(item.hum1);
+                    });
+                }
+
+
+            async function chartIt() {
+                await getData();
+                console.log("Here is the length: ", insideTemp.length);
+                const ctx = document.getElementById('chart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                xaxisID: 'Dates',
+                                yaxisID: 'Temperature',
+                                label: 'Outside Temp',
+                                data: outsideTemp,
+                                showLine: true,
+                                //backgroundColor: [
+                                //    'rgba(0, 0, 255, 0.2)'
+                                //],
+                                borderColor: [
+                                    'rgba(127, 127, 255, 2)'
+                                ],
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                xaxisID: 'Dates',
+                                yaxisID: 'Temperature',
+                                label: 'Inside Temp',
+                                data: insideTemp,
+                                showLine: true,
+                                //backgroundColor: [
+                                //    'rgba(255,0, 0, 0.2)'
+                                //],
+                                borderColor: [
+                                    'rgba(255, 200, 250, 4)'
+                                ],
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                xaxisID: 'Humidity',
+                                yaxisID: 'Relative Humidity',
+                                label: 'Inside Humidity',
+                                data: insideHum,
+                                showLine: true,
+                                //backgroundColor: [
+                                //    'rgba(200,200, 200, 0.2)'
+                                //],
+                                borderColor: [
+                                    'rgba(200, 200, 200, 2)'
+                                ],
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                xaxisID: 'Humidity',
+                                yaxisID: 'Relative Humidity',
+                                label: 'Outside Humidity',
+                                data: outsideHum,
+                                showLine: true,
+                                //backgroundColor: [
+                                //    'rgba(0,255, 0, 0.2)'
+                                //],
+                                borderColor: [
+                                    'rgba(127, 255, 127, 2)'
+                                ],
+                                borderWidth: 1,
+                                fill: false
+                            }
+                        ]
+
+                    },
+                    options: {
+                        legend: {
+                            display: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: false
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: false
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+
+</script>
+
