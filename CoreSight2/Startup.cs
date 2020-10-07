@@ -32,6 +32,7 @@ namespace CoreSight2
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<CoreSightDbContext>();
+            services.AddScoped<ICoreSightRepository, CoreSightRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

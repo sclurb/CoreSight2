@@ -37,13 +37,10 @@ namespace CoreSight2.Data
             //var result = table.Where(t => t.Date > dates.From && t.Date < dates.To);
 
             //return result.ToList();
-
             return _ctx.Readings
                 .Where(t => 
                 t.Date > dates.From && t.Date < dates.To)
                 .ToList(); ;
-
-  
         }
 
 

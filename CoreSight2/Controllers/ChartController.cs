@@ -20,15 +20,6 @@ namespace CoreSight2.Controllers
             _repository = repository;
         }
 
-        [HttpGet]
-        public void Get()
-        {
-            var x = 0;
-        }
-
-
-
-
         [HttpPost]
         public IActionResult Get([FromBody] ChartViewModel dates)
         {

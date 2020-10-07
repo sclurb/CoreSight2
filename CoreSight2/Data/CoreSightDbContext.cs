@@ -14,6 +14,7 @@ namespace CoreSight2.Data
         public CoreSightDbContext(DbContextOptions<CoreSightDbContext> options)
             : base(options)
         {
+
         }
     }
 }
