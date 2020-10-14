@@ -15,6 +15,7 @@ namespace CoreSight2.ViewModels
         public decimal Hum2 { get; set; }
         public decimal Hum3 { get; set; }
         public decimal Hum4 { get; set; }
+        public DateTime Date { get; set; }
         public ICollection<ReadingsViewModel> Items { get; set; }
 
     }

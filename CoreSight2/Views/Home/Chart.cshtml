@@ -12,6 +12,9 @@
         padding: 10px;
         margin-top: 10px;
     }
+    .box{
+        pointer-events: none;
+    }
 </style>
 <div class="container text-center">
     <h1>Chart</h1>
@@ -21,10 +24,10 @@
     <div class="row">
 
         <div class="col-md-6 input-with-post-icon">
-            <p>Enter Date: <input placeholder="From Date" type="text" id="datepicker-from" class=""></p>
+            <p>Enter Date: <input placeholder="From Date" type="text" id="datepicker-from" autocomplete="off"></p>
         </div>
         <div class="col-md-6">
-            <p>Enter Date: <input placeholder="To Date" type="text" id="datepicker-to"></p>
+            <p>Enter Date: <input placeholder="To Date" type="text" id="datepicker-to" autocomplete="off"></p>
         </div>
         <div class="col-md-12">
             <button type="submit" class="align-middle" id="geDates" onclick="doIt()">Enter Dates</button>
@@ -80,9 +83,11 @@
 
           //  //chartIt();
 
-                async function getData() {
-                    const rawResponse = await fetch('https://192.168.2.8/api/chart', {
-                    //const rawResponse = await fetch('https://localhost:44363/api/chart', {
+
+
+    async function getData() {
+        const rawResponse = await fetch('https://phtresources.com/api/chart', {
+        //const rawResponse = await fetch('https://localhost:44363/api/chart', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -94,14 +99,15 @@
                         })
                     });
                     const content = await rawResponse.json();
-
-                    content.forEach(function (item) {
-                        dates.push(item.date);
-                        insideTemp.push(item.temp1);
-                        outsideTemp.push(item.temp4);
-                        insideHum.push(item.hum4);
-                        outsideHum.push(item.hum1);
-                    });
+                    if (content != null) {
+                           content.forEach(function (item) {
+                           dates.push(item.date);
+                           insideTemp.push(item.temp1);
+                           outsideTemp.push(item.temp4);
+                           insideHum.push(item.hum4);
+                           outsideHum.push(item.hum1);
+                        });
+                    }
                 }
 
 

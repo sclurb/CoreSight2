@@ -23,22 +23,26 @@ namespace CoreSight2.Controllers
         [HttpPost]
         public IActionResult Get([FromBody] ChartViewModel dates)
         {
-            //var newChartDates = new ChartViewModel()
-            //{
-            //    To = Convert.ToDateTime(to),
-            //    From = Convert.ToDateTime(from)
-            //};
-
             var result = _repository.GetReadingsByDateRange(dates);
 
-            try
+            if(result.Count() == 0)
             {
-                return Ok(result);
+                return NotFound();
             }
-            catch (Exception ex)
+            return Ok(result);
+        }
+        
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (_repository.DeleteReadingById(id) > 0)
             {
-                return BadRequest($"Failed to get Readings ..{ex}");
+                return NoContent();
             }
+            return NotFound();
+
+
         }
     }
 }

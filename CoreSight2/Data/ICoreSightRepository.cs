@@ -7,11 +7,10 @@ namespace CoreSight2.Data
 {
     public interface ICoreSightRepository
     {
-        void AddReading(Readings newReading);
+        int DeleteReadingById(int Id);
+        int AddReading(Readings newReading);
         IEnumerable<Readings> GetAllReadings();
         public IEnumerable<Readings> GetReadingsByDateRange(ChartViewModel dates);
-        bool SaveAll();
-        bool SaveChanges();
-       // void AddReading(Readings newReading);
+        int SaveChanges();
     }
 }

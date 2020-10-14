@@ -37,29 +37,44 @@ namespace CoreSight2.Controllers
         }
 
         [HttpPost]
-       // public async Task<IActionResult> Post([FromBody]ReadingsViewModel model)
         public IActionResult Post([FromBody]ReadingsViewModel model)
         {
+            var defaultDate = new DateTime(0001, 01, 01, 00, 00, 00);
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if(model.Date == defaultDate)
+                    {
+                        model.Date = DateTime.Now.AddHours(3);
+                    }
+
                     var newReading = new Readings()
                     {
-                        Temp1 = convertToFahrenheit(model.Temp1),    
-                        Temp2 = convertToFahrenheit(model.Temp2),
-                        Temp3 = convertToFahrenheit(model.Temp3),
-                        Temp4 = convertToFahrenheit(model.Temp4),
-                        Hum1 = convertToHumidity(model.Hum1),
-                        Hum2 = convertToHumidity(model.Hum2),
-                        Hum3 = convertToHumidity(model.Hum3),
-                        Hum4 = convertToHumidity(model.Hum4),
-                        Date = DateTime.Now
+                        // Going to be getting data ffrom database now.   values have already been caluculated.
+                        //Temp1 = ConvertToFahrenheit(model.Temp1),
+                        //Temp2 = ConvertToFahrenheit(model.Temp2),
+                        //Temp3 = ConvertToFahrenheit(model.Temp3),
+                        //Temp4 = ConvertToFahrenheit(model.Temp4),
+                        //Hum1 = ConvertToHumidity(model.Hum1),
+                        //Hum2 = ConvertToHumidity(model.Hum2),
+                        //Hum3 = ConvertToHumidity(model.Hum3),
+                        //Hum4 = ConvertToHumidity(model.Hum4) 
+                        Temp1 = model.Temp1,
+                        Temp2 = model.Temp2,
+                        Temp3 = model.Temp3,
+                        Temp4 = model.Temp4,
+                        Hum1 = model.Hum1,
+                        Hum2 = model.Hum2,
+                        Hum3 = model.Hum3,
+                        Hum4 = model.Hum4,
+                        Date = model.Date
                     };
+                    int x;
+                    x = _repository.AddReading(newReading);  // yeah i know it's ugly.   I'll fix it next commit.
 
-                    _repository.AddReading(newReading);
-
-                    if (_repository.SaveAll())
+                    //if (_repository.SaveChanges() > 0)
+                    if(x > 0)
                     {
                         return Created($"/api/readings/{newReading.Id}", newReading);
                     }
@@ -76,13 +91,13 @@ namespace CoreSight2.Controllers
             return BadRequest($"Failed to save new Order ");
         }
 
-        private decimal convertToFahrenheit(decimal value)
+        private decimal ConvertToFahrenheit(decimal value)
         {
             value = (decimal)((double)value * 1.8) + 32;
             return value;
         }
 
-        private decimal convertToHumidity(decimal value)
+        private decimal ConvertToHumidity(decimal value)
         {
             if(value == 0)
             {
@@ -90,7 +105,7 @@ namespace CoreSight2.Controllers
             }
             else
             {
-                double newValue = 0;
+                double newValue;
                 newValue = ((double)value / 9.24);
                 newValue = 90 - ((2.7 - newValue) / .03);
                 newValue = Math.Round(newValue, 2);
@@ -104,9 +119,6 @@ namespace CoreSight2.Controllers
         {
             return "value";
         }
-
-
-
         // PUT: api/Api/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
