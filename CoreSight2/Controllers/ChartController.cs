@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreSight2.Data;
 using Microsoft.AspNetCore.Mvc;
 using CoreSight2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreSight2.Controllers
 {
@@ -41,8 +42,6 @@ namespace CoreSight2.Controllers
                 return NoContent();
             }
             return NotFound();
-
-
         }
     }
 }

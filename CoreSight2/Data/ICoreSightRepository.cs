@@ -11,6 +11,7 @@ namespace CoreSight2.Data
         int AddReading(Readings newReading);
         IEnumerable<Readings> GetAllReadings();
         public IEnumerable<Readings> GetReadingsByDateRange(ChartViewModel dates);
+        public Readings GetLatestReading();
         int SaveChanges();
     }
 }

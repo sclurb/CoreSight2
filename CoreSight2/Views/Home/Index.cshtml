@@ -2,11 +2,50 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <figure class="text-center">
-        <h3 class="text-center">So I had a little time to relax</h3>
-        <img class=" img-fluid" src="~/img/beforeHuricane.jpg" />
-        <figcaption class="text-center">So I thought I would take a dip in the pool</figcaption>
-    </figure>
-</div>
+
+        <h1 class="display-4 text-center">Welcome</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <figure class="text-center">
+                    <img class=" img-fluid" src="~/img/beforeHuricane.jpg" />
+                    <figcaption class="text-center">So I thought I would take a dip in the pool</figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4">
+                <h3 class="text-center">IoT and the Chart</h3>
+                <p>
+                    This is my page to show some things I know about .Net Programming and maybe a little more about IoT
+                </p>
+                <p>
+                    On the following page, I have a chart.   This chart reads from a database containing 
+                    all the temperature readings from my house for the last couple years.
+                </p>
+                <p>
+                    To explain, my boss from a couple of years ago gave me an IoT device which had a 
+                    web browser as well as four inputs for temperature and humidity.   
+                    So I took the device home and hooked up two temperature sensors and two humidity sensors.   
+                </p>
+                <p>
+                    One temperature sensor is outside my house.   Another is inside my house.  I put a humidity sensor
+                    with each of the temperature sensors.
+                </p>
+                <p>
+                    But that was not enough for me.   I wrote an application using Winforms to "scrape" the data from the device's browser.
+                    It's a simple application that sends an HttpRequest to the local IP address on my home network "192.168.2.xx".
+                    Then the application parses the text in the HTML document to get the temperature and humidity readings.
+                </p>
+                <p>
+                    Ok, that was not enough either.   I decided to make a simple database and store all the readings.   
+                    Every 7.5 minutes or four times per hour, the readings are taken and sent to a database.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <figure class="littleBobby">
+                    <img class="img-fluid" src="~/img/Bobby_3yearsOld.jpg" />
+                    <figcaption class="text-center">Robert B. Donovan puts suntan lotion on Robert M. Donovan.   
+                    Bellows Beach, Hawaii 1965</figcaption>
+                </figure>
+            </div>
+        </div>
+
+

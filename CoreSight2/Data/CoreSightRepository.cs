@@ -36,17 +36,17 @@ namespace CoreSight2.Data
             return _ctx.Readings
                 .Where(t => 
                 t.Date > dates.From && t.Date < dates.To)
+                .OrderBy(y => y.Date.Year)
+                .ThenBy(m => m.Date.Month)
+                .ThenBy(d => d.Date.Day)
+                .ThenBy(h => h.Date.Hour)
+                .ThenBy(m => m.Date.Minute)
                 .ToList(); ;
         }
         public int AddReading(Readings newReading)
         {
             _ctx.Add(newReading);
             return SaveChanges();
-        }
-
-        public int SaveChanges()
-        {
-            return _ctx.SaveChanges();
         }
         public int DeleteReadingById(int Id)
         {
@@ -56,6 +56,17 @@ namespace CoreSight2.Data
                 _ctx.Readings.Remove(result);
             }
             return SaveChanges();
+        }
+
+        public Readings GetLatestReading()
+        {
+            var result = _ctx.Readings.OrderByDescending(d => d.Date).First();
+            return result;
+        }
+
+        public int SaveChanges()
+        {
+            return _ctx.SaveChanges();
         }
     }
 }

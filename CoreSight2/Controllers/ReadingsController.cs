@@ -125,12 +125,16 @@ namespace CoreSight2.Controllers
         {
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (_repository.DeleteReadingById(id) > 0)
+            {
+                return NoContent();
+            }
+            return NotFound();
+        }
 
     }
 }
