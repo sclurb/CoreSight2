@@ -12,6 +12,8 @@ using CoreSight2.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CoreSight2.Services;
+using CoreSight2.Helpers;
 
 namespace CoreSight2
 {
@@ -30,11 +32,22 @@ namespace CoreSight2
             services.AddDbContext<CoreSightDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            })
                 .AddEntityFrameworkStores<CoreSightDbContext>();
             services.AddScoped<ICoreSightRepository, CoreSightRepository>();
+            services.AddScoped<IUserService, UserService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +71,7 @@ namespace CoreSight2
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

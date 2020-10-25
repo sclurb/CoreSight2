@@ -28,16 +28,16 @@
         <p>Current Reading Recorded at: @Model.Date</p>
         <div class="row">
             <div class="col-md-3">
-                Inside Temerpature: @Model.Temp1
+                Inside Temperature: @Model.Temp1
             </div>
             <div class="col-md-3">
-                Inside Reletive Humidity: @Model.Hum1
+                Inside Relative Humidity: @Model.Hum1
             </div>
             <div class="col-md-3">
-                Outside Temerpature: @Model.Temp2
+                Outside Temperature: @Model.Temp2
             </div>
             <div class="col-md-3">
-                Outside Reletive Humidity: @Model.Hum4
+                Outside Relative Humidity: @Model.Hum4
             </div>
         </div>
     </div>
@@ -101,8 +101,8 @@
 
 
     async function getData() {
-        //const rawResponse = await fetch('https://phtresources.com/api/chart', {
-        const rawResponse = await fetch('https://localhost:44363/api/chart', {
+        const rawResponse = await fetch('https://phtresources.com/api/chart', {
+        //const rawResponse = await fetch('https://localhost:44363/api/chart', {
         //const rawResponse = await fetch('https://192.168.2.8/api/chart', {
                         method: 'POST',
                         headers: {
