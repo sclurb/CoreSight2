@@ -7,13 +7,32 @@ body {
     padding-top: 70px;
     background-color: black;
     color: aqua;
+    
 }
+
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
   background-color: black;
+}
+
+.yuk{
+
+}
+
+#pdf-link {
+/*    padding: 20px;
+    margin: 10px;*/
+    background-color: #151515;
+    color: blue;
+    display: block;
+/*    height: 40px;*/
+    /*line-height: 40px;*/
+    text-decoration: none;
+/*    width: 100px;*/
+    text-align: center;
 }
 
 /* Provide sufficient contrast against white background */

@@ -14,29 +14,33 @@
             <div class="col-md-4">
                 <h3 class="text-center">IoT and the Chart</h3>
                 <p>
-                    This is my page to show some things I know about .Net Programming and maybe a little more about IoT
+                    This is my page to show some things I know about .Net Programming and maybe a little more about IoT.
+                    This web site uses Microsoft ASP.NET MVC Core.
                 </p>
                 <p>
                     On the following page, I have a chart.   This chart reads from a database containing 
                     all the temperature readings from my house for the last couple years.
                 </p>
                 <p>
-                    To explain, my boss from a couple of years ago gave me an IoT device which had a 
-                    web browser as well as four inputs for temperature and humidity.   
-                    So I took the device home and hooked up two temperature sensors and two humidity sensors.   
+                    To explain, my boss, from a couple of years ago, gave me an IoT device which has 
+                    four inputs for temperature and humidity.  It has no real way to look at the temperature and humidity readings
+                    other than the web browser.  You can look at the data by accessing the browser.   But outside your home, you can't see it.   
+                    This device is HTTP only.   No SSL available and no way other than port forwarding to view the data 
+                    when you are away form home.
+                    It gave me an idea.  So I took the device home and hooked up two temperature sensors and two humidity sensors.   
                 </p>
                 <p>
                     One temperature sensor is outside my house.   Another is inside my house.  I put a humidity sensor
                     with each of the temperature sensors.
                 </p>
                 <p>
-                    But that was not enough for me.   I wrote an application using Winforms to "scrape" the data from the device's browser.
+                    But that was not enough for me.   I wrote an application in 'C' on a Raspberry Pi 4 to "scrape" the data from the device's browser.
                     It's a simple application that sends an HttpRequest to the local IP address on my home network "192.168.2.xx".
                     Then the application parses the text in the HTML document to get the temperature and humidity readings.
                 </p>
                 <p>
-                    Ok, that was not enough either.   I decided to make a simple database and store all the readings.   
-                    Every 7.5 minutes or four times per hour, the readings are taken and sent to a database.
+                    Ok, that was not enough either.   I decided to make a simple web site with a database and store all the readings.   
+                    Every few minutes, the readings are taken and sent to a database on the web server living in the cloud.
                 </p>
             </div>
             <div class="col-md-4">

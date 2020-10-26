@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "IoT";
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <h2>Internet of Things</h2>
+    <br />
+
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Advantages of IoT</h4>
+            <p>
+                IoT is growing in popularity.   More and more homes and businesses are
+                using IoT to monitor and control a wide variety of devices and systems.
+                With an IoT device properly configured, you can reliably monitor just about anything.
+                Some home applications let you monitor your alarm system, control your lights and airconditioning system.
+                There are those cameras where you can monitor who comes to your door.   They are so sophisticated, you can
+                even speak the people at your front door with your smart phone.
+            </p>
+            <img class="img-fluid" src="~/img/monitoring_1.png" />
+            <img class="img-fluid" src="~/img/internet_of_things_overview.jpg" />
+        </div>
+        <div class="col-md-3">
+            <h4>Simple Commercial IoT Monitoring Example</h4>
+            <p>
+                Below is an example of a commercial application where a company in Florida would like
+                to monitor the condition of their back-up generator.   With access to any computer or smart
+                phone connected to the public internet, they can monitor the incoming power to their site.
+                They can also monitor if the generator is operational or online.
+            </p>
+            <a id="pdf-link" href="~/pdfs/PHTR_IoT.pdf">Commercial IoT Monitoring Example</a>
+            <p>
+                If you click on the link above, you will see an example where a local simple computer is
+                used to "scrape" the local IoT devices web browser.
+            </p>
+            <p>
+                In the Commercial IoT Monitoring Example, there are a few devices that need to be monitored.
+                So the program written in C sends requests to all of those devies and aggregates the data.
+                Then it posts the data to the Web Server living in the public cloud.
+            </p>
+            <p>
+                Once the Web Server has the data, it stores the data in it's database.   Any authorzed user can
+                access this web site and see the data.
+            </p>
+            <p>
+                Florida is famous for hurricanes and for that matter, just losing your power for a 
+                while during a thunderstorm.   With a simple set up as show in the 
+                <a href="~/pdfs/PHTR_IoT.pdf">Commercial IoT Monitoring Example</a>, you can check your
+                systems from anywhere at anytime.
+            </p>
+        </div>
+        <div class="col-md-3">
+            <h4>Aggregating IoT Device Data Made Simple and Cost Effective</h4>
+            <p>
+                Most IoT edvices are local devices.  You can view them inside you Local Area Network.
+                But when you are outside you local router, it is difficult to access devices especially
+                if there are many devices in the system as shown in the above example.
+            </p>
+            <p>
+                But it is possible to use a local Linux server.   (I am showing a Raspberry Pi 4.   It's cost is
+                around 64.00 USD).
+                <img class="img-fluid" src="~/img/4292-03.jpg" />
+            </p>
+            <p>
+                So this local Raspberry Pi 4 runs Linux Ubuntu version 18.04.4.   It's a 64 bit operatings system.
+                You can write a program written in 'C' which will send an HTTP request to you IoT device.
+                Then it can parse the reponse for the information you would like to get.
+            </p>
+         </div>
+        <div class="col-md-3">
+            <h4>Working Example of IoT Monitoring</h4>
+            <p>
+                On the Chart page of this web site, you cna see the data which is saved in the webserver's database.
+                This system has been operational in my home since October of 2017.
+                Below is an image of the IoT deivce mounted in my home office.
+            </p>
+            <img class="img-fluid" src="~/img/IMG_1086.JPG" />
+            <p>
+                In the link below, there is a wiring diagram very similar to the
+                Commercial IoT Monitoring Example mentioned previously on this page.
+            </p>
+            <a id="pdf-link" href="~/pdfs/SIMPLE IoT SCRAPE OPERATION.pdf">Acutal Working IoT Monitoring Example</a>
+            <p>
+                Thre is proof in the putting so to speak.   The idea is cost effective and it works.
+            </p>
+        </div>
+    </div>
+</div>

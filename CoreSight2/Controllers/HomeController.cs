@@ -32,7 +32,7 @@ namespace CoreSight2.Controllers
             var reading = _repo.GetLatestReading();
             return View(reading);
         }
-        [Authorize]
+        //[Authorize]
         public IActionResult Privacy()
         {
             return View();
